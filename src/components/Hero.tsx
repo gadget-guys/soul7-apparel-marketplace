@@ -14,7 +14,7 @@ interface HeroProps {
 }
 
 const Hero = ({ 
-  backgroundImage = "/lovable-uploads/882be832-53ca-493f-9bc0-f34dd0c010ef.png",
+  backgroundImage = "/lovable-uploads/9bc4aab1-eb34-4267-9ed9-13412726ef6e.png",
   buttons = [
     { label: "Shop Now", variant: "primary" }
   ]
@@ -22,12 +22,11 @@ const Hero = ({
   return (
     <div className="relative h-screen flex items-center justify-center overflow-hidden">
       <div
-        className="absolute inset-0 bg-black"
+        className="absolute inset-0"
         style={{
           backgroundImage: `url('${backgroundImage}')`,
           backgroundSize: "cover",
           backgroundPosition: "center",
-          filter: "brightness(0.6)",
         }}
       />
 
