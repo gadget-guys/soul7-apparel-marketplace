@@ -14,12 +14,9 @@ interface HeroProps {
 }
 
 const Hero = ({ 
-  title = "SOUL 7 APPAREL",
-  subtitle = "Elevate your style with our premium collection",
   backgroundImage = "/lovable-uploads/882be832-53ca-493f-9bc0-f34dd0c010ef.png",
   buttons = [
-    { label: "Shop Now", variant: "primary" },
-    { label: "View Collections", variant: "secondary" }
+    { label: "Shop Now", variant: "primary" }
   ]
 }: Partial<HeroProps>) => {
   return (
@@ -35,12 +32,9 @@ const Hero = ({
       />
 
       <div className="relative z-10 text-center text-white space-y-6 px-4">
-        <h1 className="text-5xl md:text-7xl font-bold tracking-tight animate-fadeIn">
-          {title}
+        <h1 className="text-5xl md:text-7xl font-bold tracking-tight animate-fadeIn font-righteous">
+          SOUL 7 APPAREL
         </h1>
-        <p className="text-xl md:text-2xl max-w-2xl mx-auto animate-fadeIn opacity-90">
-          {subtitle}
-        </p>
         <div className="flex justify-center gap-4 animate-fadeIn">
           {buttons.map((button, index) => (
             <Button
