@@ -27,11 +27,11 @@ const NavbarLeft = () => {
           <span>CATEGORIES</span>
           <ChevronDown className="h-4 w-4 transition-transform duration-200 group-data-[state=open]:rotate-180" />
         </DropdownMenuTrigger>
-        <DropdownMenuContent className="bg-black text-white min-w-[200px] border-none rounded-none animate-fadeIn z-50">
-          <DropdownMenuItem className="hover:bg-white hover:text-black transition-colors duration-200 px-4 py-2 cursor-pointer">
+        <DropdownMenuContent className="bg-[hsl(var(--primary))] text-white min-w-[200px] border-none rounded-none animate-fadeIn z-50">
+          <DropdownMenuItem className="hover:bg-white hover:text-[hsl(var(--primary))] transition-colors duration-200 px-4 py-2 cursor-pointer">
             PANDORA'S BOX
           </DropdownMenuItem>
-          <DropdownMenuItem className="hover:bg-white hover:text-black transition-colors duration-200 px-4 py-2 cursor-pointer">
+          <DropdownMenuItem className="hover:bg-white hover:text-[hsl(var(--primary))] transition-colors duration-200 px-4 py-2 cursor-pointer">
             VAULT 007
           </DropdownMenuItem>
         </DropdownMenuContent>
@@ -41,11 +41,11 @@ const NavbarLeft = () => {
           <span>SHOP</span>
           <ChevronDown className="h-4 w-4 transition-transform duration-200 group-data-[state=open]:rotate-180" />
         </DropdownMenuTrigger>
-        <DropdownMenuContent className="bg-black text-white min-w-[200px] border-none rounded-none animate-fadeIn z-50">
-          <DropdownMenuItem className="hover:bg-white hover:text-black transition-colors duration-200 px-4 py-2 cursor-pointer">
+        <DropdownMenuContent className="bg-[hsl(var(--primary))] text-white min-w-[200px] border-none rounded-none animate-fadeIn z-50">
+          <DropdownMenuItem className="hover:bg-white hover:text-[hsl(var(--primary))] transition-colors duration-200 px-4 py-2 cursor-pointer">
             NEW ARRIVALS
           </DropdownMenuItem>
-          <DropdownMenuItem className="hover:bg-white hover:text-black transition-colors duration-200 px-4 py-2 cursor-pointer">
+          <DropdownMenuItem className="hover:bg-white hover:text-[hsl(var(--primary))] transition-colors duration-200 px-4 py-2 cursor-pointer">
             BEST SELLERS
           </DropdownMenuItem>
         </DropdownMenuContent>
@@ -55,11 +55,11 @@ const NavbarLeft = () => {
           <span>USD</span>
           <ChevronDown className="h-4 w-4 transition-transform duration-200 group-data-[state=open]:rotate-180" />
         </DropdownMenuTrigger>
-        <DropdownMenuContent className="bg-black text-white min-w-[200px] border-none rounded-none animate-fadeIn z-50 grid grid-cols-3 gap-1 p-4">
+        <DropdownMenuContent className="bg-[hsl(var(--primary))] text-white min-w-[200px] border-none rounded-none animate-fadeIn z-50 grid grid-cols-3 gap-1 p-4">
           {currencies.map((currency) => (
             <DropdownMenuItem 
               key={currency}
-              className="hover:bg-white hover:text-black transition-colors duration-200 justify-center cursor-pointer"
+              className="hover:bg-white hover:text-[hsl(var(--primary))] transition-colors duration-200 justify-center cursor-pointer"
             >
               {currency}
             </DropdownMenuItem>
