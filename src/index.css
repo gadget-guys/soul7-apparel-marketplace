@@ -55,6 +55,11 @@
   }
   body {
     @apply bg-background text-foreground antialiased;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+    color: #333;
   }
 }
 
@@ -65,8 +70,18 @@
   100% { transform: translateY(0px); }
 }
 
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
 .animate-float {
   animation: float 3s ease-in-out infinite;
+}
+
+.animate-pulse {
+  animation: pulse 2s infinite;
 }
 
 /* Dropdown menu custom styles */
@@ -76,4 +91,31 @@
 
 .dropdown-item {
   @apply hover:bg-white hover:text-black px-4 py-2 cursor-pointer;
+}
+
+/* Hero Section */
+.hero-gradient {
+  background: linear-gradient(to right, #111, #444);
+}
+
+.animated-box {
+  @apply bg-[#222] p-5 rounded-lg inline-block animate-pulse;
+}
+
+.vip-login-btn {
+  @apply mt-5 inline-block bg-[#f0a500] px-8 py-4 text-white no-underline rounded-md transition-colors duration-300 hover:bg-[#ff8800];
+}
+
+/* Service Section */
+.service-box {
+  @apply flex justify-center gap-5 mt-5;
+}
+
+.service {
+  @apply bg-[#eee] p-5 rounded-lg w-[200px];
+}
+
+/* Social Icons */
+.social-icon {
+  @apply mx-2.5 text-[#f0a500] no-underline hover:text-[#ff8800] transition-colors duration-300;
 }
