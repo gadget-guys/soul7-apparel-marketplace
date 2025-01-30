@@ -10,15 +10,8 @@ const Navbar = () => {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white border-b">
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          {/* Logo */}
-          <div className="flex-shrink-0">
-            <a href="/" className="text-xl font-bold tracking-wider">
-              SOUL 7 APPAREL
-            </a>
-          </div>
-
-          {/* Right Navigation */}
-          <div className="flex items-center space-x-4">
+          {/* Left section */}
+          <div className="flex-1 flex justify-start">
             <Button variant="ghost" size="icon">
               <Search className="h-5 w-5" />
             </Button>
@@ -26,7 +19,17 @@ const Navbar = () => {
             <Button variant="ghost" size="icon">
               <User className="h-5 w-5" />
             </Button>
+          </div>
 
+          {/* Center Logo */}
+          <div className="flex-1 flex justify-center">
+            <a href="/" className="text-xl font-bold tracking-wider">
+              SOUL 7 APPAREL
+            </a>
+          </div>
+
+          {/* Right section */}
+          <div className="flex-1 flex justify-end items-center space-x-4">
             <a href="/vip" className="text-sm font-medium text-gray-700 hover:text-black">
               VIP
             </a>
