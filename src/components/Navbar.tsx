@@ -35,7 +35,8 @@ const Navbar = () => {
             <div className="flex items-center">
               <div className="w-8 h-[1px] bg-black transform rotate-45 mr-4"></div>
               <a href="/" className="text-2xl font-righteous tracking-wider">
-                SOUL 7
+                <span className="mr-2">SOUL</span>
+                <span>7</span>
               </a>
               <div className="w-8 h-[1px] bg-black transform -rotate-45 ml-4"></div>
             </div>
