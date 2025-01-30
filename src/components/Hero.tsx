@@ -41,7 +41,7 @@ const Hero = ({
         <div className="flex flex-col items-center justify-center gap-4 animate-fadeIn">
           <Button
             size="lg"
-            className="bg-white text-black hover:bg-gray-100"
+            className="bg-[hsl(var(--primary))] text-white hover:bg-[hsl(var(--primary))/90]"
             variant="default"
           >
             {buttons[0].label}
