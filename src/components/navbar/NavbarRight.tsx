@@ -1,6 +1,7 @@
 import { Search, ShoppingCart, User } from "lucide-react";
 import { Button } from "../ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
+import { Link } from "react-router-dom";
 
 interface NavbarRightProps {
   onSearchOpen: () => void;
@@ -24,9 +25,12 @@ const NavbarRight = ({ onSearchOpen }: NavbarRightProps) => {
       >
         <User className="h-5 w-5" />
       </Button>
-      <a href="/vip" className="text-sm font-medium text-gray-700 hover:text-black transition-colors">
+      <Link 
+        to="/vip" 
+        className="text-sm font-medium text-gray-700 hover:text-black transition-colors"
+      >
         VIP
-      </a>
+      </Link>
       <Sheet>
         <SheetTrigger asChild>
           <Button 
