@@ -2,12 +2,40 @@ import { Search, ShoppingCart, User } from "lucide-react";
 import { Button } from "../ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
 import { Link } from "react-router-dom";
+import { useSupabaseClient, useUser } from "@supabase/auth-helpers-react";
 
 interface NavbarRightProps {
   onSearchOpen: () => void;
 }
 
 const NavbarRight = ({ onSearchOpen }: NavbarRightProps) => {
+  console.log("NavbarRight component rendered");
+  const supabase = useSupabaseClient();
+  const user = useUser();
+
+  const handleSignIn = async () => {
+    try {
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider: 'google',
+        options: {
+          redirectTo: `${window.location.origin}/vip`
+        }
+      });
+      if (error) throw error;
+    } catch (error) {
+      console.error('Error signing in:', error);
+    }
+  };
+
+  const handleSignOut = async () => {
+    try {
+      const { error } = await supabase.auth.signOut();
+      if (error) throw error;
+    } catch (error) {
+      console.error('Error signing out:', error);
+    }
+  };
+
   return (
     <div className="flex-1 flex justify-end items-center space-x-4">
       <Button 
@@ -18,19 +46,33 @@ const NavbarRight = ({ onSearchOpen }: NavbarRightProps) => {
       >
         <Search className="h-5 w-5" />
       </Button>
-      <Button 
-        variant="ghost" 
-        size="icon"
-        className="hover:bg-gray-100 transition-colors duration-200"
-      >
-        <User className="h-5 w-5" />
-      </Button>
-      <Link 
-        to="/vip" 
-        className="text-sm font-medium text-gray-700 hover:text-black transition-colors duration-200"
-      >
-        VIP
-      </Link>
+      
+      {user ? (
+        <div className="flex items-center space-x-4">
+          <Button 
+            variant="ghost"
+            onClick={handleSignOut}
+            className="text-sm font-medium text-gray-700 hover:text-black transition-colors duration-200"
+          >
+            Sign Out
+          </Button>
+          <Link 
+            to="/vip" 
+            className="text-sm font-medium text-gray-700 hover:text-black transition-colors duration-200"
+          >
+            VIP
+          </Link>
+        </div>
+      ) : (
+        <Button 
+          variant="ghost"
+          onClick={handleSignIn}
+          className="text-sm font-medium text-gray-700 hover:text-black transition-colors duration-200"
+        >
+          Sign In
+        </Button>
+      )}
+
       <Sheet>
         <SheetTrigger asChild>
           <Button 
