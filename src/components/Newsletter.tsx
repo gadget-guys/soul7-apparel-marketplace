@@ -42,7 +42,10 @@ const Newsletter = ({
               onChange={(e) => setEmail(e.target.value)}
               required
             />
-            <Button type="submit" className="bg-black hover:bg-gray-800">
+            <Button 
+              type="submit" 
+              className="bg-[hsl(var(--primary))] hover:bg-[hsl(var(--primary))/90] text-white"
+            >
               Subscribe
             </Button>
           </div>

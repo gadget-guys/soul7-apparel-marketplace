@@ -29,25 +29,26 @@ const Hero = ({
   return (
     <div className="relative h-screen flex items-center justify-center overflow-hidden">
       <div
-        className="absolute inset-0"
+        className="absolute inset-0 bg-black/60"
         style={{
           backgroundImage: `url('${backgroundImage}')`,
           backgroundSize: "cover",
           backgroundPosition: "center",
+          filter: "contrast(120%) brightness(80%)",
         }}
       />
 
       <div className="relative z-10 text-center text-white space-y-6 px-4">
-        <div className="flex flex-col items-center justify-center gap-4 animate-fadeIn">
+        <div className="flex flex-col items-center justify-center gap-8 animate-fadeIn">
           <Button
             size="lg"
-            className="bg-[hsl(var(--primary))] text-white hover:bg-[hsl(var(--primary))/90]"
+            className="bg-[hsl(var(--primary))] text-white hover:bg-[hsl(var(--primary))/90] px-8 py-6 text-lg font-semibold"
             variant="default"
           >
             {buttons[0].label}
           </Button>
           <span 
-            className="font-righteous text-white text-xl cursor-pointer hover:text-gray-200"
+            className="font-righteous text-white text-2xl cursor-pointer hover:text-gray-200"
             onClick={handleVaultClick}
           >
             Vault Opening Soon

@@ -32,7 +32,7 @@ const ProductGrid = ({ title }: { title: string }) => {
     <div className="py-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <h2 className="text-2xl font-bold mb-8">{title}</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-12">
           {products.map((product) => (
             <ProductCard key={product.id} {...product} />
           ))}
