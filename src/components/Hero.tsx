@@ -32,9 +32,6 @@ const Hero = ({
       />
 
       <div className="relative z-10 text-center text-white space-y-6 px-4">
-        <h1 className="text-5xl md:text-7xl font-bold tracking-tight animate-fadeIn font-righteous">
-          SOUL 7 APPAREL
-        </h1>
         <div className="flex justify-center gap-4 animate-fadeIn">
           {buttons.map((button, index) => (
             <Button
