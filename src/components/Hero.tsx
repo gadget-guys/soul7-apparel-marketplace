@@ -17,8 +17,7 @@ interface HeroProps {
 const Hero = ({ 
   backgroundImage = "/lovable-uploads/9bc4aab1-eb34-4267-9ed9-13412726ef6e.png",
   buttons = [
-    { label: "Shop Now", variant: "primary" },
-    { label: "Vault Opening Soon", variant: "secondary" }
+    { label: "Shop Now", variant: "primary" }
   ]
 }: Partial<HeroProps>) => {
   const navigate = useNavigate();
@@ -39,7 +38,7 @@ const Hero = ({
       />
 
       <div className="relative z-10 text-center text-white space-y-6 px-4">
-        <div className="flex flex-col md:flex-row justify-center gap-4 animate-fadeIn">
+        <div className="flex flex-col items-center justify-center gap-4 animate-fadeIn">
           <Button
             size="lg"
             className="bg-white text-black hover:bg-gray-100"
@@ -47,14 +46,12 @@ const Hero = ({
           >
             {buttons[0].label}
           </Button>
-          <Button
-            size="lg"
-            className="font-righteous text-white border-white hover:bg-white/10"
-            variant="outline"
+          <span 
+            className="font-righteous text-white text-xl cursor-pointer hover:text-gray-200"
             onClick={handleVaultClick}
           >
-            {buttons[1].label}
-          </Button>
+            Vault Opening Soon
+          </span>
         </div>
       </div>
     </div>
