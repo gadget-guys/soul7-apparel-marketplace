@@ -3,9 +3,9 @@ import { createClient } from '@supabase/supabase-js';
 import { SessionContextProvider } from '@supabase/auth-helpers-react';
 import Index from "./pages/Index";
 import VIP from "./pages/VIP";
+import Settings from "./pages/Settings";
 import NotFound from "./pages/NotFound";
 
-// Add console logs to debug environment variables
 console.log("Supabase URL:", import.meta.env.VITE_SUPABASE_URL);
 console.log("Supabase Anon Key:", import.meta.env.VITE_SUPABASE_ANON_KEY ? "Present" : "Missing");
 
@@ -25,6 +25,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/vip" element={<VIP />} />
+          <Route path="/settings" element={<Settings />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>

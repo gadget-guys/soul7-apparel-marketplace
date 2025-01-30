@@ -1,8 +1,15 @@
-import { Search, ShoppingCart } from "lucide-react";
+import { Search, ShoppingCart, Settings } from "lucide-react";
 import { Button } from "../ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
 import { Link } from "react-router-dom";
 import { useSupabaseClient, useUser } from "@supabase/auth-helpers-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 interface NavbarRightProps {
   onSearchOpen: () => void;
@@ -67,19 +74,32 @@ const NavbarRight = ({ onSearchOpen }: NavbarRightProps) => {
       
       {user ? (
         <div className="flex items-center space-x-4">
-          <Button 
-            variant="ghost"
-            onClick={handleSignOut}
-            className="text-sm font-medium text-gray-700 hover:text-black transition-colors duration-200"
-          >
-            Sign Out
-          </Button>
-          <Link 
-            to="/vip" 
-            className="text-sm font-medium text-gray-700 hover:text-black transition-colors duration-200"
-          >
-            VIP
-          </Link>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" className="relative h-8 w-8 rounded-full">
+                <Avatar className="h-8 w-8">
+                  <AvatarImage src={user.user_metadata?.avatar_url} alt={user.email || ''} />
+                  <AvatarFallback>{user.email?.charAt(0).toUpperCase()}</AvatarFallback>
+                </Avatar>
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <DropdownMenuItem asChild>
+                <Link to="/settings" className="flex items-center">
+                  <Settings className="mr-2 h-4 w-4" />
+                  <span>Settings</span>
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/vip" className="flex items-center">
+                  <span>VIP Access</span>
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={handleSignOut}>
+                Sign Out
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
       ) : (
         <div className="flex items-center space-x-2">
