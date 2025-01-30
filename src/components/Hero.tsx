@@ -22,6 +22,10 @@ const Hero = ({
 }: Partial<HeroProps>) => {
   const navigate = useNavigate();
 
+  const handleVaultClick = () => {
+    navigate('/vault');
+  };
+
   return (
     <div className="relative h-screen flex items-center justify-center overflow-hidden">
       <div
@@ -36,13 +40,12 @@ const Hero = ({
 
       <div className="relative z-10 text-center text-white space-y-6 px-4">
         <div className="flex flex-col items-center justify-center gap-8 animate-fadeIn">
-          <Button
-            size="lg"
-            className="bg-[hsl(var(--primary))] text-white hover:bg-[hsl(var(--primary))/90] px-8 py-6 text-lg font-semibold"
-            variant="default"
+          <span 
+            className="font-righteous text-white text-2xl cursor-pointer hover:text-gray-200"
+            onClick={handleVaultClick}
           >
-            {buttons[0].label}
-          </Button>
+            Vault Opening Soon
+          </span>
         </div>
       </div>
     </div>
