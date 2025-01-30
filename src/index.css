@@ -119,3 +119,16 @@
 .social-icon {
   @apply mx-2.5 text-[#f0a500] no-underline hover:text-[#ff8800] transition-colors duration-300;
 }
+
+/* VIP Login Page Styles */
+.vip-login-page {
+  @apply min-h-screen bg-gradient-to-br from-gray-900 to-black flex items-center justify-center p-4;
+}
+
+.vip-login-container {
+  @apply w-full max-w-md bg-black/50 p-8 rounded-lg shadow-xl backdrop-blur-sm;
+}
+
+.vip-input {
+  @apply w-full bg-transparent border border-purple-500 text-white placeholder:text-gray-400 focus:border-purple-400 rounded-md px-4 py-2 mb-4;
+}
