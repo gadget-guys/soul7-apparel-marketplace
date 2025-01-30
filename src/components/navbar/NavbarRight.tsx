@@ -14,20 +14,20 @@ const NavbarRight = ({ onSearchOpen }: NavbarRightProps) => {
         variant="ghost" 
         size="icon"
         onClick={onSearchOpen}
-        className="hover:bg-gray-100 transition-colors"
+        className="hover:bg-gray-100 transition-colors duration-200"
       >
         <Search className="h-5 w-5" />
       </Button>
       <Button 
         variant="ghost" 
         size="icon"
-        className="hover:bg-gray-100 transition-colors"
+        className="hover:bg-gray-100 transition-colors duration-200"
       >
         <User className="h-5 w-5" />
       </Button>
       <Link 
         to="/vip" 
-        className="text-sm font-medium text-gray-700 hover:text-black transition-colors"
+        className="text-sm font-medium text-gray-700 hover:text-black transition-colors duration-200"
       >
         VIP
       </Link>
@@ -36,7 +36,7 @@ const NavbarRight = ({ onSearchOpen }: NavbarRightProps) => {
           <Button 
             variant="ghost" 
             size="icon"
-            className="hover:bg-gray-100 transition-colors"
+            className="hover:bg-gray-100 transition-colors duration-200"
           >
             <ShoppingCart className="h-5 w-5" />
           </Button>
