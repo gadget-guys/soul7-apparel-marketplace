@@ -22,10 +22,6 @@ const Hero = ({
 }: Partial<HeroProps>) => {
   const navigate = useNavigate();
 
-  const handleVaultClick = () => {
-    navigate('/vault');
-  };
-
   return (
     <div className="relative h-screen flex items-center justify-center overflow-hidden">
       <div
@@ -47,12 +43,6 @@ const Hero = ({
           >
             {buttons[0].label}
           </Button>
-          <span 
-            className="font-righteous text-white text-2xl cursor-pointer hover:text-gray-200"
-            onClick={handleVaultClick}
-          >
-            Vault Opening Soon
-          </span>
         </div>
       </div>
     </div>
