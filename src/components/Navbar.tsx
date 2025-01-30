@@ -35,7 +35,7 @@ const Navbar = () => {
             <div className="flex items-center">
               <div className="w-8 h-[1px] bg-black transform rotate-45 mr-4"></div>
               <a href="/" className="text-2xl font-righteous tracking-wider">
-                SOUL 7 APPAREL
+                SOUL 7
               </a>
               <div className="w-8 h-[1px] bg-black transform -rotate-45 ml-4"></div>
             </div>
