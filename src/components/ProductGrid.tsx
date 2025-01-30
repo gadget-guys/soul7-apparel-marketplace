@@ -6,28 +6,24 @@ const products = [
     name: "Classic Black Hoodie",
     price: "$89.99",
     image: "/placeholder.svg",
-    category: "New Arrivals",
   },
   {
     id: 2,
     name: "Essential T-Shirt",
     price: "$39.99",
     image: "/placeholder.svg",
-    category: "New Arrivals",
   },
   {
     id: 3,
     name: "Urban Cap",
     price: "$29.99",
     image: "/placeholder.svg",
-    category: "New Arrivals",
   },
   {
     id: 4,
     name: "Streetwear Hoodie",
     price: "$99.99",
     image: "/placeholder.svg",
-    category: "New Arrivals",
   },
 ];
 

@@ -4,8 +4,6 @@ import { Button } from "./ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
 
 const Navbar = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white border-b">
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
@@ -42,18 +40,15 @@ const Navbar = () => {
 
           {/* Right section */}
           <div className="flex-1 flex justify-end items-center space-x-4">
-            <div className="hidden md:flex items-center space-x-4">
-              <Button variant="ghost" size="icon">
-                <Search className="h-5 w-5" />
-              </Button>
-              <Button variant="ghost" size="icon">
-                <User className="h-5 w-5" />
-              </Button>
-              <a href="/vip" className="text-sm font-medium text-gray-700 hover:text-black">
-                VIP
-              </a>
-            </div>
-
+            <Button variant="ghost" size="icon">
+              <Search className="h-5 w-5" />
+            </Button>
+            <Button variant="ghost" size="icon">
+              <User className="h-5 w-5" />
+            </Button>
+            <a href="/vip" className="text-sm font-medium text-gray-700 hover:text-black">
+              VIP
+            </a>
             <Sheet>
               <SheetTrigger asChild>
                 <Button variant="ghost" size="icon">
@@ -72,21 +67,6 @@ const Navbar = () => {
             </Sheet>
           </div>
         </div>
-
-        {/* Mobile Navigation */}
-        {isMenuOpen && (
-          <div className="md:hidden py-4 animate-slideDown">
-            <a href="/shop-all" className="block py-2 text-gray-600 hover:text-gray-900">
-              SHOP ALL
-            </a>
-            <a href="/categories" className="block py-2 text-gray-600 hover:text-gray-900">
-              CATEGORIES
-            </a>
-            <a href="/shop" className="block py-2 text-gray-600 hover:text-gray-900">
-              SHOP
-            </a>
-          </div>
-        )}
       </div>
     </nav>
   );
