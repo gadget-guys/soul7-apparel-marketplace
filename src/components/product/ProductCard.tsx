@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { Button } from "../ui/button";
 
 interface ProductCardProps {
@@ -5,12 +6,29 @@ interface ProductCardProps {
   name: string;
   price: string;
   image: string;
+  category: string;
 }
 
-const ProductCard = ({ id, name, price, image }: ProductCardProps) => {
+const ProductCard = ({ id, name, price, image, category }: ProductCardProps) => {
+  const navigate = useNavigate();
+  
+  const handleImageClick = () => {
+    console.log(`Navigating to ${category.toLowerCase()}`);
+    navigate(`/${category.toLowerCase()}`);
+  };
+
+  const handleAddToCart = () => {
+    console.log(`Adding ${name} to cart`);
+    // Here you would typically add the item to a cart state/context
+    navigate(`/${category.toLowerCase()}`);
+  };
+
   return (
     <div key={id} className="group">
-      <div className="aspect-square bg-gray-100 mb-4 overflow-hidden">
+      <div 
+        className="aspect-square bg-gray-100 mb-4 overflow-hidden cursor-pointer"
+        onClick={handleImageClick}
+      >
         <img
           src={image}
           alt={name}
@@ -24,6 +42,7 @@ const ProductCard = ({ id, name, price, image }: ProductCardProps) => {
       <Button 
         variant="default" 
         className="w-full bg-[hsl(var(--primary))] hover:bg-[hsl(var(--primary))/90] text-white"
+        onClick={handleAddToCart}
       >
         Add to Cart
       </Button>

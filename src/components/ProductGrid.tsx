@@ -5,6 +5,7 @@ interface Product {
   name: string;
   price: string;
   image: string;
+  category: string;
 }
 
 interface ProductGridProps {
@@ -14,27 +15,31 @@ interface ProductGridProps {
 const products: Product[] = [
   {
     id: 1,
-    name: "Classic Black Hoodie",
+    name: "Black Cherry Blossom Hoodie",
     price: "$89.99",
-    image: "/placeholder.svg",
+    image: "/lovable-uploads/665b7229-d38b-43c6-9d00-f447d0eb702f.png",
+    category: "Hoodies"
   },
   {
     id: 2,
-    name: "Essential T-Shirt",
+    name: "White Graphic T-Shirt",
     price: "$39.99",
-    image: "/placeholder.svg",
+    image: "/lovable-uploads/2764071e-43fc-4a6c-844a-a7510a8f0f4a.png",
+    category: "T-shirts"
   },
   {
     id: 3,
-    name: "Urban Cap",
+    name: "Black Logo Cap",
     price: "$29.99",
-    image: "/placeholder.svg",
+    image: "/lovable-uploads/1f2bcc67-e233-45fb-98b2-0679ce7e8c0a.png",
+    category: "Hats"
   },
   {
     id: 4,
-    name: "Streetwear Hoodie",
+    name: "Classic Black Hoodie",
     price: "$99.99",
-    image: "/placeholder.svg",
+    image: "/lovable-uploads/665b7229-d38b-43c6-9d00-f447d0eb702f.png",
+    category: "Hoodies"
   },
 ];
 

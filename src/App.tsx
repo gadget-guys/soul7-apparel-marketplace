@@ -7,6 +7,9 @@ import Index from "./pages/Index";
 import VIP from "./pages/VIP";
 import Settings from "./pages/Settings";
 import NotFound from "./pages/NotFound";
+import Hoodies from "./pages/Hoodies";
+import Tshirts from "./pages/Tshirts";
+import Hats from "./pages/Hats";
 
 // Environment variable validation
 if (!import.meta.env.VITE_SUPABASE_URL || !import.meta.env.VITE_SUPABASE_ANON_KEY) {
@@ -29,6 +32,9 @@ const App = () => {
           <Route path="/" element={<Index />} />
           <Route path="/vip" element={<VIP />} />
           <Route path="/settings" element={<Settings />} />
+          <Route path="/hoodies" element={<Hoodies />} />
+          <Route path="/t-shirts" element={<Tshirts />} />
+          <Route path="/hats" element={<Hats />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>
