@@ -1,4 +1,4 @@
-import { Search, ShoppingCart, User } from "lucide-react";
+import { Search, ShoppingCart } from "lucide-react";
 import { Button } from "../ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
 import { Link } from "react-router-dom";
@@ -24,6 +24,24 @@ const NavbarRight = ({ onSearchOpen }: NavbarRightProps) => {
       if (error) throw error;
     } catch (error) {
       console.error('Error signing in:', error);
+    }
+  };
+
+  const handleSignUp = async () => {
+    try {
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider: 'google',
+        options: {
+          redirectTo: `${window.location.origin}/vip`,
+          queryParams: {
+            access_type: 'offline',
+            prompt: 'consent',
+          }
+        }
+      });
+      if (error) throw error;
+    } catch (error) {
+      console.error('Error signing up:', error);
     }
   };
 
@@ -64,13 +82,22 @@ const NavbarRight = ({ onSearchOpen }: NavbarRightProps) => {
           </Link>
         </div>
       ) : (
-        <Button 
-          variant="ghost"
-          onClick={handleSignIn}
-          className="text-sm font-medium text-gray-700 hover:text-black transition-colors duration-200"
-        >
-          Sign In
-        </Button>
+        <div className="flex items-center space-x-2">
+          <Button 
+            variant="ghost"
+            onClick={handleSignIn}
+            className="text-sm font-medium text-gray-700 hover:text-black transition-colors duration-200"
+          >
+            Sign In
+          </Button>
+          <Button 
+            variant="outline"
+            onClick={handleSignUp}
+            className="text-sm font-medium bg-black text-white hover:bg-gray-800 transition-colors duration-200"
+          >
+            Sign Up
+          </Button>
+        </div>
       )}
 
       <Sheet>
