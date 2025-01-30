@@ -36,7 +36,7 @@ const Navbar = () => {
               variant="ghost"
               size="icon"
               onClick={() => setSearchOpen(false)}
-              className="text-white"
+              className="text-white hover:text-gray-300 transition-colors"
             >
               <X className="h-6 w-6" />
             </Button>
@@ -50,47 +50,47 @@ const Navbar = () => {
           <div className="flex justify-between items-center h-16">
             {/* Left section */}
             <div className="flex-1 hidden md:flex items-center space-x-8">
-              <a href="/shop-all" className="text-sm font-medium text-gray-700 hover:text-black">
+              <a href="/shop-all" className="text-sm font-medium text-gray-700 hover:text-black transition-colors">
                 SHOP ALL
               </a>
               <DropdownMenu>
-                <DropdownMenuTrigger className="flex items-center space-x-1 text-sm font-medium text-gray-700 hover:text-black">
+                <DropdownMenuTrigger className="flex items-center space-x-1 text-sm font-medium text-gray-700 hover:text-black transition-colors">
                   <span>CATEGORIES</span>
-                  <ChevronDown className="h-4 w-4" />
+                  <ChevronDown className="h-4 w-4 transition-transform duration-200 group-data-[state=open]:rotate-180" />
                 </DropdownMenuTrigger>
-                <DropdownMenuContent className="bg-black text-white min-w-[200px] border-none rounded-none">
-                  <DropdownMenuItem className="hover:bg-white hover:text-black">
+                <DropdownMenuContent className="bg-black text-white min-w-[200px] border-none rounded-none animate-fadeIn">
+                  <DropdownMenuItem className="hover:bg-white hover:text-black transition-colors px-4 py-2">
                     PANDORA'S BOX
                   </DropdownMenuItem>
-                  <DropdownMenuItem className="hover:bg-white hover:text-black">
+                  <DropdownMenuItem className="hover:bg-white hover:text-black transition-colors px-4 py-2">
                     VAULT 007
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
               <DropdownMenu>
-                <DropdownMenuTrigger className="flex items-center space-x-1 text-sm font-medium text-gray-700 hover:text-black">
+                <DropdownMenuTrigger className="flex items-center space-x-1 text-sm font-medium text-gray-700 hover:text-black transition-colors">
                   <span>SHOP</span>
-                  <ChevronDown className="h-4 w-4" />
+                  <ChevronDown className="h-4 w-4 transition-transform duration-200 group-data-[state=open]:rotate-180" />
                 </DropdownMenuTrigger>
-                <DropdownMenuContent className="bg-black text-white min-w-[200px] border-none rounded-none">
-                  <DropdownMenuItem className="hover:bg-white hover:text-black">
+                <DropdownMenuContent className="bg-black text-white min-w-[200px] border-none rounded-none animate-fadeIn">
+                  <DropdownMenuItem className="hover:bg-white hover:text-black transition-colors px-4 py-2">
                     NEW ARRIVALS
                   </DropdownMenuItem>
-                  <DropdownMenuItem className="hover:bg-white hover:text-black">
+                  <DropdownMenuItem className="hover:bg-white hover:text-black transition-colors px-4 py-2">
                     BEST SELLERS
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
               <DropdownMenu>
-                <DropdownMenuTrigger className="flex items-center space-x-1 text-sm font-medium text-gray-700 hover:text-black">
+                <DropdownMenuTrigger className="flex items-center space-x-1 text-sm font-medium text-gray-700 hover:text-black transition-colors">
                   <span>USD</span>
-                  <ChevronDown className="h-4 w-4" />
+                  <ChevronDown className="h-4 w-4 transition-transform duration-200 group-data-[state=open]:rotate-180" />
                 </DropdownMenuTrigger>
-                <DropdownMenuContent className="bg-black text-white min-w-[200px] border-none rounded-none grid grid-cols-3 gap-1 p-4">
+                <DropdownMenuContent className="bg-black text-white min-w-[200px] border-none rounded-none animate-fadeIn grid grid-cols-3 gap-1 p-4">
                   {currencies.map((currency) => (
                     <DropdownMenuItem 
                       key={currency}
-                      className="hover:bg-white hover:text-black justify-center"
+                      className="hover:bg-white hover:text-black transition-colors justify-center"
                     >
                       {currency}
                     </DropdownMenuItem>
@@ -101,7 +101,7 @@ const Navbar = () => {
 
             {/* Center Logo */}
             <div className="flex-1 flex justify-center">
-              <a href="/" className="text-xl font-bold tracking-wider">
+              <a href="/" className="text-xl font-bold tracking-wider hover:opacity-80 transition-opacity">
                 SOUL 7 APPAREL
               </a>
             </div>
@@ -112,18 +112,27 @@ const Navbar = () => {
                 variant="ghost" 
                 size="icon"
                 onClick={() => setSearchOpen(true)}
+                className="hover:bg-gray-100 transition-colors"
               >
                 <Search className="h-5 w-5" />
               </Button>
-              <Button variant="ghost" size="icon">
+              <Button 
+                variant="ghost" 
+                size="icon"
+                className="hover:bg-gray-100 transition-colors"
+              >
                 <User className="h-5 w-5" />
               </Button>
-              <a href="/vip" className="text-sm font-medium text-gray-700 hover:text-black">
+              <a href="/vip" className="text-sm font-medium text-gray-700 hover:text-black transition-colors">
                 VIP
               </a>
               <Sheet>
                 <SheetTrigger asChild>
-                  <Button variant="ghost" size="icon">
+                  <Button 
+                    variant="ghost" 
+                    size="icon"
+                    className="hover:bg-gray-100 transition-colors"
+                  >
                     <ShoppingCart className="h-5 w-5" />
                   </Button>
                 </SheetTrigger>
