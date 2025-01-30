@@ -14,7 +14,7 @@ const Navbar = () => {
           <div className="flex justify-between items-center h-16">
             <NavbarLeft />
             <div className="flex-1 flex justify-center">
-              <a href="/" className="text-xl font-bold tracking-wider hover:opacity-80 transition-opacity">
+              <a href="/" className="text-2xl font-righteous tracking-wider hover:opacity-80 transition-opacity transform -skew-x-12">
                 SOUL 7 APPAREL
               </a>
             </div>
