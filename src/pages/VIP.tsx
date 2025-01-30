@@ -1,16 +1,17 @@
 import { useState, useEffect } from "react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { useNavigate } from "react-router-dom";
 import { useSupabaseClient, useUser } from "@supabase/auth-helpers-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 const VIP = () => {
-  console.log("VIP component mounted");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const supabase = useSupabaseClient();
   const user = useUser();
+
+  console.log("VIP page rendering");
 
   useEffect(() => {
     console.log("Current user:", user);

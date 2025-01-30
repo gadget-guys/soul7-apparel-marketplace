@@ -8,21 +8,21 @@ interface HeroButton {
 }
 
 interface HeroProps {
-  title: string;
-  subtitle: string;
-  backgroundImage: string;
-  buttons: HeroButton[];
+  title?: string;
+  subtitle?: string;
+  backgroundImage?: string;
+  buttons?: HeroButton[];
 }
 
 const Hero = ({ 
   backgroundImage = "/lovable-uploads/9bc4aab1-eb34-4267-9ed9-13412726ef6e.png",
-  buttons = [
-    { label: "Shop Now", variant: "primary" }
-  ]
-}: Partial<HeroProps>) => {
+  buttons = [{ label: "Shop Now", variant: "primary" }]
+}: HeroProps) => {
   const navigate = useNavigate();
+  console.log("Hero rendering with background:", backgroundImage);
 
   const handleVaultClick = () => {
+    console.log("Navigating to vault");
     navigate('/vault');
   };
 

@@ -15,13 +15,17 @@ const Newsletter = ({
   const [email, setEmail] = useState("");
   const { toast } = useToast();
 
+  console.log("Newsletter rendering");
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Newsletter subscription:", email);
+    
     toast({
       title: "Success",
       description: "Thank you for subscribing to our newsletter!",
     });
+    
     setEmail("");
   };
 

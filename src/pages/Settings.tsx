@@ -1,8 +1,9 @@
 import { useUser } from "@supabase/auth-helpers-react";
 import { useNavigate } from "react-router-dom";
 import { Settings as SettingsIcon, Key, User, CreditCard } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+
+// Component imports
 import ApiKeySection from "@/components/settings/ApiKeySection";
 import ProfileSection from "@/components/settings/ProfileSection";
 import VipSection from "@/components/settings/VipSection";
@@ -11,7 +12,10 @@ const Settings = () => {
   const user = useUser();
   const navigate = useNavigate();
 
+  console.log("Settings page rendering for user:", user?.email);
+
   if (!user) {
+    console.log("No user found, redirecting to home");
     navigate("/");
     return null;
   }

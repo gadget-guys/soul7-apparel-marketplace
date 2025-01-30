@@ -1,6 +1,17 @@
 import ProductCard from "./product/ProductCard";
 
-const products = [
+interface Product {
+  id: number;
+  name: string;
+  price: string;
+  image: string;
+}
+
+interface ProductGridProps {
+  title: string;
+}
+
+const products: Product[] = [
   {
     id: 1,
     name: "Classic Black Hoodie",
@@ -27,7 +38,9 @@ const products = [
   },
 ];
 
-const ProductGrid = ({ title }: { title: string }) => {
+const ProductGrid = ({ title }: ProductGridProps) => {
+  console.log("ProductGrid rendering with title:", title);
+
   return (
     <div className="py-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
