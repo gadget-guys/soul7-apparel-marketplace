@@ -9,7 +9,7 @@ const Vault = () => {
       >
         <div className="h-full flex items-center justify-center">
           <h1 className="font-righteous text-4xl md:text-6xl text-white">
-            DOKI DOKI
+            Vault Opening Soon
           </h1>
         </div>
       </div>
