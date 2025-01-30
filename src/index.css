@@ -23,7 +23,7 @@
     --border: 240 5.9% 90%;
     --input: 240 5.9% 90%;
     --ring: 240 5.9% 10%;
-    --radius: 0.75rem;
+    --radius: 0;
   }
  
   .dark {
@@ -67,4 +67,13 @@
 
 .animate-float {
   animation: float 3s ease-in-out infinite;
+}
+
+/* Dropdown menu custom styles */
+.dropdown-content {
+  @apply bg-black text-white min-w-[200px] border-none rounded-none;
+}
+
+.dropdown-item {
+  @apply hover:bg-white hover:text-black px-4 py-2 cursor-pointer;
 }
