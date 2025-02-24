@@ -1,3 +1,4 @@
+
 import { Button } from "./ui/button";
 import { useNavigate } from "react-router-dom";
 
@@ -21,11 +22,6 @@ const Hero = ({
   const navigate = useNavigate();
   console.log("Hero rendering with background:", backgroundImage);
 
-  const handleVaultClick = () => {
-    console.log("Navigating to vault");
-    navigate('/vault');
-  };
-
   return (
     <div className="relative h-screen flex items-center justify-center overflow-hidden hero-gradient">
       <div
@@ -47,15 +43,6 @@ const Hero = ({
               className="w-[150px] h-auto"
             />
           </div>
-          <span 
-            className="font-righteous text-white text-2xl cursor-pointer hover:text-gray-200"
-            onClick={handleVaultClick}
-          >
-            Vault Opening Soon
-          </span>
-          <a href="/vip" className="vip-login-btn">
-            VIP Access
-          </a>
         </div>
       </div>
     </div>
