@@ -12,25 +12,25 @@
     --popover: 0 0% 100%;
     --popover-foreground: 240 10% 3.9%;
     
-    /* Updated colors to match the image */
-    --primary: 14 75% 40%; /* Orange-red */
+    /* Updated colors to match the image with higher saturation and brightness */
+    --primary: 14 100% 50%; /* Brighter Orange-red */
     --primary-foreground: 0 0% 98%;
     
-    --secondary: 280 45% 45%; /* Purple */
+    --secondary: 280 70% 50%; /* Brighter Purple */
     --secondary-foreground: 0 0% 98%;
     
-    --accent: 190 60% 45%; /* Teal/turquoise */
+    --accent: 190 100% 50%; /* Brighter Teal/turquoise */
     --accent-foreground: 0 0% 98%;
     
-    --muted: 45 95% 50%; /* Golden yellow */
+    --muted: 45 100% 60%; /* Brighter Golden yellow */
     --muted-foreground: 0 0% 98%;
     
-    --destructive: 335 65% 55%; /* Pink/magenta */
+    --destructive: 335 90% 65%; /* Brighter Pink/magenta */
     --destructive-foreground: 0 0% 98%;
     
-    --border: 220 85% 45%; /* Royal blue */
-    --input: 220 85% 45%;
-    --ring: 220 85% 45%;
+    --border: 220 100% 50%; /* Brighter Royal blue */
+    --input: 220 100% 50%;
+    --ring: 220 100% 50%;
     
     --radius: 0;
   }
@@ -43,25 +43,25 @@
     --popover: 240 10% 3.9%;
     --popover-foreground: 0 0% 98%;
     
-    /* Dark mode versions of the updated colors */
-    --primary: 14 75% 40%;
+    /* Dark mode versions with same vibrant colors */
+    --primary: 14 100% 50%;
     --primary-foreground: 0 0% 98%;
     
-    --secondary: 280 45% 45%;
+    --secondary: 280 70% 50%;
     --secondary-foreground: 0 0% 98%;
     
-    --accent: 190 60% 45%;
+    --accent: 190 100% 50%;
     --accent-foreground: 0 0% 98%;
     
-    --muted: 45 95% 50%;
+    --muted: 45 100% 60%;
     --muted-foreground: 0 0% 98%;
     
-    --destructive: 335 65% 55%;
+    --destructive: 335 90% 65%;
     --destructive-foreground: 0 0% 98%;
     
-    --border: 220 85% 45%;
-    --input: 220 85% 45%;
-    --ring: 220 85% 45%;
+    --border: 220 100% 50%;
+    --input: 220 100% 50%;
+    --ring: 220 100% 50%;
   }
 }
 
@@ -100,45 +100,45 @@
   animation: pulse 2s infinite;
 }
 
-/* Dropdown menu custom styles */
+/* Updated Dropdown menu styles with new colors */
 .dropdown-content {
-  @apply bg-black text-white min-w-[200px] border-none rounded-none;
+  @apply bg-primary text-white min-w-[200px] border-none rounded-none;
 }
 
 .dropdown-item {
-  @apply hover:bg-white hover:text-black px-4 py-2 cursor-pointer;
+  @apply hover:bg-white hover:text-primary px-4 py-2 cursor-pointer;
 }
 
-/* Hero Section */
+/* Updated Hero Section */
 .hero-gradient {
-  background: linear-gradient(to right, #111, #444);
+  background: linear-gradient(to right, hsl(var(--primary)), hsl(var(--secondary)));
 }
 
 .animated-box {
-  @apply bg-[#222] p-5 rounded-lg inline-block animate-pulse;
+  @apply bg-secondary p-5 rounded-lg inline-block animate-pulse;
 }
 
 .vip-login-btn {
-  @apply mt-5 inline-block bg-[#f0a500] px-8 py-4 text-white no-underline rounded-md transition-all duration-300 hover:bg-[#ff8800] hover:scale-110;
+  @apply mt-5 inline-block bg-primary px-8 py-4 text-white no-underline rounded-md transition-all duration-300 hover:bg-primary/90 hover:scale-110;
 }
 
-/* Service Section */
+/* Updated Service Section */
 .service-box {
   @apply flex justify-center gap-5 mt-5;
 }
 
 .service {
-  @apply bg-[#eee] p-5 rounded-lg w-[200px];
+  @apply bg-accent/10 p-5 rounded-lg w-[200px];
 }
 
-/* Social Icons */
+/* Updated Social Icons */
 .social-icon {
-  @apply mx-2.5 text-[#f0a500] no-underline hover:text-[#ff8800] transition-colors duration-300;
+  @apply mx-2.5 text-primary no-underline hover:text-primary/80 transition-colors duration-300;
 }
 
-/* VIP Login Page Styles */
+/* Updated VIP Login Page Styles */
 .vip-login-page {
-  @apply min-h-screen bg-gradient-to-br from-gray-900 to-black flex items-center justify-center p-4;
+  @apply min-h-screen bg-gradient-to-br from-secondary to-primary flex items-center justify-center p-4;
 }
 
 .vip-login-container {
@@ -146,5 +146,5 @@
 }
 
 .vip-input {
-  @apply w-full bg-transparent border border-purple-500 text-white placeholder:text-gray-400 focus:border-purple-400 rounded-md px-4 py-2 mb-4;
+  @apply w-full bg-transparent border border-accent text-white placeholder:text-gray-400 focus:border-accent/80 rounded-md px-4 py-2 mb-4;
 }
