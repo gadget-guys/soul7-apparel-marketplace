@@ -1,6 +1,8 @@
+
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ProductDetail from "@/components/product/ProductDetail";
+import { Toaster } from "sonner";
 
 const Tshirts = () => {
   console.log("T-shirts page rendering");
@@ -16,6 +18,7 @@ const Tshirts = () => {
         />
       </main>
       <Footer />
+      <Toaster position="top-center" />
     </div>
   );
 };
