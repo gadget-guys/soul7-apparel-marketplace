@@ -63,13 +63,14 @@ const Signup = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-black p-4 relative overflow-hidden">
-      {/* Background Image with blue overlay */}
+    <div className="fixed inset-0 w-full h-full flex items-center justify-center">
+      {/* Background Image with blue overlay - now fixed and covering entire viewport */}
       <div 
-        className="absolute inset-0 bg-center bg-cover z-0"
+        className="fixed inset-0 w-full h-full bg-center bg-cover z-0"
         style={{ 
-          backgroundImage: "url('/lovable-uploads/2d03674c-b744-44ea-a96d-a849b34bf2de.png')", 
-          backgroundPosition: "center center",
+          backgroundImage: "url('/lovable-uploads/2d03674c-b744-44ea-a96d-a849b34bf2de.png')",
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat"
         }}
       >
         <div className="absolute inset-0 bg-blue-900/30 backdrop-blur-sm"></div>
