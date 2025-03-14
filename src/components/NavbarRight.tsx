@@ -1,7 +1,7 @@
 
 import { Search, ShoppingCart, Settings } from "lucide-react";
-import { Button } from "../ui/button";
-import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
+import { Button } from "./ui/button";
+import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
 import { Link } from "react-router-dom";
 import { useSupabaseClient, useUser } from "@supabase/auth-helpers-react";
 import {

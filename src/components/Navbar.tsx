@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ChevronDown, Search, ShoppingCart } from "lucide-react";
@@ -11,7 +10,7 @@ import {
 import { Button } from "./ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
 import SearchOverlay from "./navbar/SearchOverlay";
-import NavbarRight from "./navbar/NavbarRight";
+import NavbarRight from "./NavbarRight";
 
 const Navbar = () => {
   const [searchOpen, setSearchOpen] = useState(false);
