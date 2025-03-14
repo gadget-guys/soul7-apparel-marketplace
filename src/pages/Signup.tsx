@@ -63,46 +63,47 @@ const Signup = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-black p-4 relative">
-      {/* Background Image */}
+    <div className="min-h-screen flex items-center justify-center bg-black p-4 relative overflow-hidden">
+      {/* Background Image with blue overlay */}
       <div 
-        className="absolute inset-0 opacity-20 bg-center bg-no-repeat bg-contain"
+        className="absolute inset-0 bg-center bg-cover z-0"
         style={{ 
           backgroundImage: "url('/lovable-uploads/2d03674c-b744-44ea-a96d-a849b34bf2de.png')", 
-          backgroundPosition: "center right",
-          backgroundSize: "contain" 
+          backgroundPosition: "center center",
         }}
-      ></div>
+      >
+        <div className="absolute inset-0 bg-blue-900/30 backdrop-blur-sm"></div>
+      </div>
       
       {/* Back to shop button */}
       <button 
         onClick={() => navigate("/")}
-        className="absolute top-8 left-8 bg-transparent border border-white text-white px-6 py-2 hover:bg-white hover:text-black transition-all duration-300 rounded-md flex items-center space-x-2"
+        className="absolute top-8 left-8 z-10 bg-transparent border border-white text-white px-6 py-2 hover:bg-white/10 transition-all duration-300 rounded-md flex items-center space-x-2"
       >
         <span>←</span>
         <span>Back to Shop</span>
       </button>
 
-      <div className="w-full max-w-md bg-black/70 p-8 backdrop-blur-sm border border-white/10 rounded-lg shadow-xl relative z-10">
-        <div className="mb-6 text-center">
-          <div className="flex justify-center mb-2">
+      <div className="w-full max-w-md bg-white/10 backdrop-blur-md p-8 border border-white/20 rounded-lg shadow-xl relative z-10">
+        <div className="mb-8 text-center">
+          <div className="flex justify-center mb-4">
             <img 
               src="/lovable-uploads/e4633585-3030-4cfb-b4ee-7080d7505ff2.png" 
               alt="SOUL 7" 
-              className="h-12"
+              className="h-16"
             />
           </div>
           <h2 className="text-2xl font-bold text-white">Create an Account</h2>
-          <p className="text-gray-400 text-sm mt-1">Join SOUL 7 for exclusive VIP access</p>
+          <p className="text-gray-200 text-sm mt-2">Join SOUL 7 for exclusive VIP access</p>
         </div>
         
         {error && (
-          <div className="mb-4 p-3 bg-red-900/30 border border-red-500/50 text-red-200 text-sm rounded">
+          <div className="mb-6 p-4 bg-red-500/20 border border-red-500/50 text-red-100 text-sm rounded-md">
             {error}
           </div>
         )}
         
-        <form className="space-y-4" onSubmit={handleEmailSignUp}>
+        <form className="space-y-5" onSubmit={handleEmailSignUp}>
           <div className="space-y-2">
             <Label htmlFor="email" className="text-white">Email Address</Label>
             <Input
@@ -111,7 +112,7 @@ const Signup = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="name@example.com"
-              className="bg-black/50 border-white/20 text-white placeholder:text-gray-500"
+              className="bg-white/5 border border-white/20 text-white placeholder:text-gray-400"
               required
             />
           </div>
@@ -124,7 +125,7 @@ const Signup = () => {
                 type={showPassword ? "text" : "password"}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="bg-black/50 border-white/20 text-white pr-10 placeholder:text-gray-500"
+                className="bg-white/5 border border-white/20 text-white pr-10 placeholder:text-gray-400"
                 required
               />
               <button
@@ -139,7 +140,7 @@ const Signup = () => {
                 )}
               </button>
             </div>
-            <p className="text-xs text-gray-400 mt-1">
+            <p className="text-xs text-gray-300 mt-1">
               Password must be at least 6 characters
             </p>
           </div>
@@ -147,7 +148,7 @@ const Signup = () => {
           <Button 
             type="submit"
             disabled={loading}
-            className="w-full bg-teal-600 hover:bg-teal-700 text-white font-medium py-2"
+            className="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 h-11"
           >
             {loading ? "Creating account..." : "Create Account"}
           </Button>
@@ -157,7 +158,7 @@ const Signup = () => {
               <div className="w-full border-t border-white/10"></div>
             </div>
             <div className="relative flex justify-center text-xs">
-              <span className="px-2 bg-black text-gray-400">or sign up with</span>
+              <span className="px-2 bg-white/5 backdrop-blur-md text-gray-300">or sign up with</span>
             </div>
           </div>
           
@@ -165,7 +166,7 @@ const Signup = () => {
             type="button"
             variant="outline"
             onClick={handleGoogleSignUp}
-            className="w-full bg-transparent border border-white/20 text-white hover:bg-white hover:text-black flex items-center justify-center gap-2"
+            className="w-full bg-white/5 border border-white/20 text-white hover:bg-white/10 hover:text-white flex items-center justify-center gap-2 h-11"
           >
             <svg viewBox="0 0 24 24" width="16" height="16" xmlns="http://www.w3.org/2000/svg">
               <g transform="matrix(1, 0, 0, 1, 27.009001, -39.238998)">
@@ -179,7 +180,7 @@ const Signup = () => {
           </Button>
           
           <div className="text-center mt-6">
-            <span className="text-gray-400 text-sm">Already have an account?</span>
+            <span className="text-gray-300 text-sm">Already have an account?</span>
             <button
               type="button"
               onClick={() => navigate("/vip")}
