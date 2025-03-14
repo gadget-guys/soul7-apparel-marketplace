@@ -1,51 +1,45 @@
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useSupabaseClient, useUser } from "@supabase/auth-helpers-react";
+import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import { Eye, EyeOff } from "lucide-react";
 
-const VIP = () => {
+const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [rememberDevice, setRememberDevice] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
   const supabase = useSupabaseClient();
-  const user = useUser();
 
-  useEffect(() => {
-    if (user) {
-      navigate("/vip-access");
-    }
-  }, [user, navigate]);
-
-  const handleEmailSignIn = async (e: React.FormEvent) => {
+  const handleEmailSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
     setLoading(true);
     
     try {
-      const { error } = await supabase.auth.signInWithPassword({
+      const { error } = await supabase.auth.signUp({
         email,
         password,
+        options: {
+          emailRedirectTo: `${window.location.origin}/vip-access`
+        }
       });
       
       if (error) throw error;
-      navigate("/vip-access");
+      navigate("/signup-success");
     } catch (error: any) {
-      setError(error.message || "Error signing in");
+      setError(error.message || "Error signing up");
     } finally {
       setLoading(false);
     }
   };
 
-  const handleGoogleSignIn = async () => {
+  const handleGoogleSignUp = async () => {
     setError(null);
     try {
       const { error } = await supabase.auth.signInWithOAuth({
@@ -60,7 +54,7 @@ const VIP = () => {
       });
       if (error) throw error;
     } catch (error: any) {
-      setError(error.message || "Error signing in with Google");
+      setError(error.message || "Error signing up with Google");
     }
   };
 
@@ -98,8 +92,8 @@ const VIP = () => {
               className="h-12"
             />
           </div>
-          <h2 className="text-2xl font-bold text-white">Welcome Back</h2>
-          <p className="text-gray-400 text-sm mt-1">Sign in to access exclusive VIP content</p>
+          <h2 className="text-2xl font-bold text-white">Create an Account</h2>
+          <p className="text-gray-400 text-sm mt-1">Join SOUL 7 for exclusive VIP access</p>
         </div>
         
         {error && (
@@ -108,7 +102,7 @@ const VIP = () => {
           </div>
         )}
         
-        <form className="space-y-4" onSubmit={handleEmailSignIn}>
+        <form className="space-y-4" onSubmit={handleEmailSignUp}>
           <div className="space-y-2">
             <Label htmlFor="email" className="text-white">Email Address</Label>
             <Input
@@ -123,16 +117,7 @@ const VIP = () => {
           </div>
           
           <div className="space-y-2">
-            <div className="flex justify-between items-center">
-              <Label htmlFor="password" className="text-white">Password</Label>
-              <button 
-                type="button" 
-                className="text-xs text-gray-400 hover:text-white"
-                onClick={() => navigate("/forgot-password")}
-              >
-                Forgot email or password?
-              </button>
-            </div>
+            <Label htmlFor="password" className="text-white">Password</Label>
             <div className="relative">
               <Input
                 id="password"
@@ -154,21 +139,9 @@ const VIP = () => {
                 )}
               </button>
             </div>
-          </div>
-          
-          <div className="flex items-center space-x-2">
-            <Checkbox 
-              id="remember" 
-              checked={rememberDevice}
-              onCheckedChange={(checked) => setRememberDevice(checked === true)}
-              className="border-white/20 data-[state=checked]:bg-white data-[state=checked]:text-black"
-            />
-            <label 
-              htmlFor="remember" 
-              className="text-sm text-gray-300 cursor-pointer flex gap-2 items-center"
-            >
-              Remember this device
-            </label>
+            <p className="text-xs text-gray-400 mt-1">
+              Password must be at least 6 characters
+            </p>
           </div>
           
           <Button 
@@ -176,7 +149,7 @@ const VIP = () => {
             disabled={loading}
             className="w-full bg-teal-600 hover:bg-teal-700 text-white font-medium py-2"
           >
-            {loading ? "Signing in..." : "Sign In"}
+            {loading ? "Creating account..." : "Create Account"}
           </Button>
           
           <div className="relative my-6">
@@ -184,14 +157,14 @@ const VIP = () => {
               <div className="w-full border-t border-white/10"></div>
             </div>
             <div className="relative flex justify-center text-xs">
-              <span className="px-2 bg-black text-gray-400">or sign in with</span>
+              <span className="px-2 bg-black text-gray-400">or sign up with</span>
             </div>
           </div>
           
           <Button 
             type="button"
             variant="outline"
-            onClick={handleGoogleSignIn}
+            onClick={handleGoogleSignUp}
             className="w-full bg-transparent border border-white/20 text-white hover:bg-white hover:text-black flex items-center justify-center gap-2"
           >
             <svg viewBox="0 0 24 24" width="16" height="16" xmlns="http://www.w3.org/2000/svg">
@@ -206,13 +179,13 @@ const VIP = () => {
           </Button>
           
           <div className="text-center mt-6">
-            <span className="text-gray-400 text-sm">Don't have an account?</span>
+            <span className="text-gray-400 text-sm">Already have an account?</span>
             <button
               type="button"
-              onClick={() => navigate("/signup")}
+              onClick={() => navigate("/vip")}
               className="text-sm text-white ml-2 hover:underline"
             >
-              Sign up now
+              Sign in
             </button>
           </div>
         </form>
@@ -221,4 +194,4 @@ const VIP = () => {
   );
 };
 
-export default VIP;
+export default Signup;

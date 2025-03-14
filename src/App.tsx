@@ -1,3 +1,4 @@
+
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { createClient } from '@supabase/supabase-js';
 import { SessionContextProvider } from '@supabase/auth-helpers-react';
@@ -10,6 +11,11 @@ import NotFound from "./pages/NotFound";
 import Hoodies from "./pages/Hoodies";
 import Tshirts from "./pages/Tshirts";
 import Hats from "./pages/Hats";
+import Signup from "./pages/Signup";
+import SignupSuccess from "./pages/SignupSuccess";
+import ForgotPassword from "./pages/ForgotPassword";
+import ResetPassword from "./pages/ResetPassword";
+import VipAccess from "./pages/VipAccess";
 
 // Environment variable validation
 if (!import.meta.env.VITE_SUPABASE_URL || !import.meta.env.VITE_SUPABASE_ANON_KEY) {
@@ -31,6 +37,11 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/vip" element={<VIP />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/signup-success" element={<SignupSuccess />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
+          <Route path="/vip-access" element={<VipAccess />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="/hoodies" element={<Hoodies />} />
           <Route path="/t-shirts" element={<Tshirts />} />
