@@ -83,14 +83,15 @@ const Navbar = () => {
               </Link>
             </div>
 
-            {/* Center logo with diagonal lines */}
+            {/* Center logo */}
             <div className="flex items-center">
-              <div className="w-8 h-[1px] bg-black transform rotate-45 mr-4"></div>
-              <Link to="/" className="text-2xl font-righteous tracking-wider">
-                <span className="mr-2">SOUL</span>
-                <span>7</span>
+              <Link to="/" className="flex items-center justify-center">
+                <img
+                  src="/lovable-uploads/eb91ef95-6b63-464d-bcef-a9b62198a243.png"
+                  alt="SOUL SEVEN"
+                  className="h-8"
+                />
               </Link>
-              <div className="w-8 h-[1px] bg-black transform -rotate-45 ml-4"></div>
             </div>
 
             {/* Right section - Now using NavbarRight component */}
