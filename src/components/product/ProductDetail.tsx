@@ -16,20 +16,35 @@ import { toast } from "sonner";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
+interface ProductColor {
+  display: string;
+  value: string;
+  image: string;
+}
+
 interface ProductDetailProps {
   name: string;
   price: number;
   image: string;
+  productImages?: string[];
+  colors?: ProductColor[];
 }
 
-const ProductDetail = ({ name, price, image }: ProductDetailProps) => {
+const ProductDetail = ({ 
+  name, 
+  price, 
+  image, 
+  productImages = [image], 
+  colors = [
+    { display: "White", value: "white", image: "/lovable-uploads/e30f0056-fb38-4400-8cc1-ae4283df659b.png" },
+    { display: "Black", value: "black", image: "/lovable-uploads/527f8500-523c-4731-b296-bd134b57f03d.png" },
+  ]
+}: ProductDetailProps) => {
   const [size, setSize] = useState<string>("");
-  const [color, setColor] = useState<string>("white");
+  const [color, setColor] = useState<string>(colors[0].value);
   const [quantity, setQuantity] = useState(1);
   const [activeImage, setActiveImage] = useState(0);
-  const [enlargedImage, setEnlargedImage] = useState<string | null>(null);
   const [zoomPosition, setZoomPosition] = useState({ x: 0, y: 0 });
-  const [activeDetailSection, setActiveDetailSection] = useState<number | null>(null);
 
   const handleQuantityChange = (change: number) => {
     const newQuantity = quantity + change;
@@ -57,40 +72,36 @@ const ProductDetail = ({ name, price, image }: ProductDetailProps) => {
 
   const monthlyPayment = (price / 4).toFixed(2);
 
-  // Available colors with their display and value properties
-  const colors = [
-    { display: "White", value: "white", image: "/lovable-uploads/e30f0056-fb38-4400-8cc1-ae4283df659b.png" },
-    { display: "Black", value: "black", image: "/lovable-uploads/527f8500-523c-4731-b296-bd134b57f03d.png" },
-  ];
-
+  // Find the currently selected color's image
+  const selectedColorImage = colors.find(c => c.value === color)?.image || image;
+  
   // Generate product images based on selected color
-  const productImages = [
-    colors.find(c => c.value === color)?.image || image,
-    "/lovable-uploads/2ac38054-c8a3-40dd-bcd6-b5519f88cedc.png",
-    "/lovable-uploads/882be832-53ca-493f-9bc0-f34dd0c010ef.png",
-    "/lovable-uploads/e20ddc7b-4112-44e4-b0d8-7453101c3c7a.png",
-  ];
+  const currentProductImages = productImages.length > 1 
+    ? productImages 
+    : [selectedColorImage, selectedColorImage, selectedColorImage, selectedColorImage];
 
   // Define image sections for detailed view
   const imageSections = [
-    { id: 1, name: "Front view", image: productImages[0] },
-    { id: 2, name: "Back view", image: productImages[1] },
-    { id: 3, name: "Side view", image: productImages[2] },
-    { id: 4, name: "Detail view", image: productImages[3] },
-    // Upper section of the t-shirt
-    { id: 5, name: "Upper detail", 
-      image: productImages[3], 
-      cropStyle: { objectPosition: '50% 0%', objectFit: 'cover' } 
+    // Upper section of the product
+    { 
+      id: 1, 
+      name: "Upper detail", 
+      image: currentProductImages[3] || currentProductImages[0], 
+      cropStyle: { objectPosition: '50% 0%', objectFit: 'cover' as const } 
     },
     // Middle section with graphic
-    { id: 6, name: "Graphic detail", 
-      image: productImages[3], 
-      cropStyle: { objectPosition: '50% 50%', objectFit: 'cover' } 
+    { 
+      id: 2, 
+      name: "Graphic detail", 
+      image: currentProductImages[3] || currentProductImages[0], 
+      cropStyle: { objectPosition: '50% 50%', objectFit: 'cover' as const } 
     },
-    // Lower section of the t-shirt
-    { id: 7, name: "Lower detail", 
-      image: productImages[3], 
-      cropStyle: { objectPosition: '50% 100%', objectFit: 'cover' } 
+    // Lower section of the product
+    { 
+      id: 3, 
+      name: "Lower detail", 
+      image: currentProductImages[3] || currentProductImages[0], 
+      cropStyle: { objectPosition: '50% 100%', objectFit: 'cover' as const } 
     },
   ];
 
@@ -104,10 +115,9 @@ const ProductDetail = ({ name, price, image }: ProductDetailProps) => {
             <DialogTrigger asChild>
               <div 
                 className="aspect-square overflow-hidden bg-gray-100 cursor-pointer transition-all hover:opacity-90"
-                onClick={() => setEnlargedImage(productImages[activeImage])}
               >
                 <img 
-                  src={productImages[activeImage]} 
+                  src={currentProductImages[activeImage]} 
                   alt={name}
                   className="w-full h-full object-cover"
                 />
@@ -116,7 +126,7 @@ const ProductDetail = ({ name, price, image }: ProductDetailProps) => {
             <DialogContent className="max-w-3xl">
               <div className="aspect-square w-full">
                 <img 
-                  src={productImages[activeImage]} 
+                  src={currentProductImages[activeImage]} 
                   alt={name}
                   className="w-full h-full object-contain"
                 />
@@ -125,7 +135,7 @@ const ProductDetail = ({ name, price, image }: ProductDetailProps) => {
           </Dialog>
           
           <div className="grid grid-cols-4 gap-2">
-            {productImages.map((img, index) => (
+            {currentProductImages.map((img, index) => (
               <button
                 key={index}
                 onClick={() => setActiveImage(index)}
@@ -145,71 +155,29 @@ const ProductDetail = ({ name, price, image }: ProductDetailProps) => {
           <div className="mt-8">
             <h3 className="font-bold mb-2">Detailed Views</h3>
             <div className="grid grid-cols-3 gap-2">
-              {/* Upper section */}
-              <Sheet>
-                <SheetTrigger asChild>
-                  <button className="aspect-square overflow-hidden border hover:border-black transition-all">
-                    <img 
-                      src={productImages[3]} 
-                      alt="Upper section"
-                      className="w-full h-full object-cover object-top"
-                    />
-                  </button>
-                </SheetTrigger>
-                <SheetContent side="bottom" className="h-[80vh]">
-                  <div className="h-full flex items-center justify-center">
-                    <img 
-                      src={productImages[3]} 
-                      alt="Detailed view"
-                      className="max-h-full max-w-full object-contain"
-                    />
-                  </div>
-                </SheetContent>
-              </Sheet>
-
-              {/* Middle section */}
-              <Sheet>
-                <SheetTrigger asChild>
-                  <button className="aspect-square overflow-hidden border hover:border-black transition-all">
-                    <img 
-                      src={productImages[3]} 
-                      alt="Middle section"
-                      className="w-full h-full object-cover object-center"
-                    />
-                  </button>
-                </SheetTrigger>
-                <SheetContent side="bottom" className="h-[80vh]">
-                  <div className="h-full flex items-center justify-center">
-                    <img 
-                      src={productImages[3]} 
-                      alt="Detailed view"
-                      className="max-h-full max-w-full object-contain"
-                    />
-                  </div>
-                </SheetContent>
-              </Sheet>
-
-              {/* Lower section */}
-              <Sheet>
-                <SheetTrigger asChild>
-                  <button className="aspect-square overflow-hidden border hover:border-black transition-all">
-                    <img 
-                      src={productImages[3]} 
-                      alt="Lower section"
-                      className="w-full h-full object-cover object-bottom"
-                    />
-                  </button>
-                </SheetTrigger>
-                <SheetContent side="bottom" className="h-[80vh]">
-                  <div className="h-full flex items-center justify-center">
-                    <img 
-                      src={productImages[3]} 
-                      alt="Detailed view"
-                      className="max-h-full max-w-full object-contain"
-                    />
-                  </div>
-                </SheetContent>
-              </Sheet>
+              {imageSections.map((section) => (
+                <Sheet key={section.id}>
+                  <SheetTrigger asChild>
+                    <button className="aspect-square overflow-hidden border hover:border-black transition-all">
+                      <img 
+                        src={section.image} 
+                        alt={section.name}
+                        className="w-full h-full"
+                        style={section.cropStyle}
+                      />
+                    </button>
+                  </SheetTrigger>
+                  <SheetContent side="bottom" className="h-[80vh]">
+                    <div className="h-full flex items-center justify-center">
+                      <img 
+                        src={section.image} 
+                        alt={section.name}
+                        className="max-h-full max-w-full object-contain"
+                      />
+                    </div>
+                  </SheetContent>
+                </Sheet>
+              ))}
             </div>
           </div>
         </div>
