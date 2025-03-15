@@ -84,7 +84,7 @@ const Navbar = () => {
             </div>
 
             {/* Center logo */}
-            <div className="flex items-center">
+            <div className="absolute left-1/2 transform -translate-x-1/2">
               <Link to="/" className="flex items-center justify-center">
                 <img
                   src="/lovable-uploads/eb91ef95-6b63-464d-bcef-a9b62198a243.png"
