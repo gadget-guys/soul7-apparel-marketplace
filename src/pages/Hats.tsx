@@ -1,6 +1,8 @@
+
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ProductDetail from "@/components/product/ProductDetail";
+import { Toaster } from "sonner";
 
 const Hats = () => {
   console.log("Hats page rendering");
@@ -16,6 +18,7 @@ const Hats = () => {
         />
       </main>
       <Footer />
+      <Toaster position="top-center" />
     </div>
   );
 };

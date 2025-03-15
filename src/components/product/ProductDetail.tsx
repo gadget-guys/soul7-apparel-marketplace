@@ -4,8 +4,17 @@ import { Button } from "@/components/ui/button";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-import { Minus, Plus, Bookmark, ShoppingBag } from 'lucide-react';
+import { 
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious 
+} from "@/components/ui/carousel";
+import { Minus, Plus, Bookmark, ShoppingBag, ZoomIn, Expand } from 'lucide-react';
 import { toast } from "sonner";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 interface ProductDetailProps {
   name: string;
@@ -19,6 +28,8 @@ const ProductDetail = ({ name, price, image }: ProductDetailProps) => {
   const [quantity, setQuantity] = useState(1);
   const [activeImage, setActiveImage] = useState(0);
   const [enlargedImage, setEnlargedImage] = useState<string | null>(null);
+  const [zoomPosition, setZoomPosition] = useState({ x: 0, y: 0 });
+  const [activeDetailSection, setActiveDetailSection] = useState<number | null>(null);
 
   const handleQuantityChange = (change: number) => {
     const newQuantity = quantity + change;
@@ -37,6 +48,13 @@ const ProductDetail = ({ name, price, image }: ProductDetailProps) => {
     console.log(`Added to cart: ${quantity} ${color} ${name} in size ${size}`);
   };
 
+  const handleImageMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const { left, top, width, height } = e.currentTarget.getBoundingClientRect();
+    const x = ((e.clientX - left) / width) * 100;
+    const y = ((e.clientY - top) / height) * 100;
+    setZoomPosition({ x, y });
+  };
+
   const monthlyPayment = (price / 4).toFixed(2);
 
   // Available colors with their display and value properties
@@ -50,6 +68,30 @@ const ProductDetail = ({ name, price, image }: ProductDetailProps) => {
     colors.find(c => c.value === color)?.image || image,
     "/lovable-uploads/2ac38054-c8a3-40dd-bcd6-b5519f88cedc.png",
     "/lovable-uploads/882be832-53ca-493f-9bc0-f34dd0c010ef.png",
+    "/lovable-uploads/e20ddc7b-4112-44e4-b0d8-7453101c3c7a.png",
+  ];
+
+  // Define image sections for detailed view
+  const imageSections = [
+    { id: 1, name: "Front view", image: productImages[0] },
+    { id: 2, name: "Back view", image: productImages[1] },
+    { id: 3, name: "Side view", image: productImages[2] },
+    { id: 4, name: "Detail view", image: productImages[3] },
+    // Upper section of the t-shirt
+    { id: 5, name: "Upper detail", 
+      image: productImages[3], 
+      cropStyle: { objectPosition: '50% 0%', objectFit: 'cover' } 
+    },
+    // Middle section with graphic
+    { id: 6, name: "Graphic detail", 
+      image: productImages[3], 
+      cropStyle: { objectPosition: '50% 50%', objectFit: 'cover' } 
+    },
+    // Lower section of the t-shirt
+    { id: 7, name: "Lower detail", 
+      image: productImages[3], 
+      cropStyle: { objectPosition: '50% 100%', objectFit: 'cover' } 
+    },
   ];
 
   console.log(`Product Detail rendering for ${name} with size: ${size}, color: ${color} and quantity: ${quantity}`);
@@ -82,7 +124,7 @@ const ProductDetail = ({ name, price, image }: ProductDetailProps) => {
             </DialogContent>
           </Dialog>
           
-          <div className="grid grid-cols-3 gap-2">
+          <div className="grid grid-cols-4 gap-2">
             {productImages.map((img, index) => (
               <button
                 key={index}
@@ -98,6 +140,77 @@ const ProductDetail = ({ name, price, image }: ProductDetailProps) => {
                 />
               </button>
             ))}
+          </div>
+
+          <div className="mt-8">
+            <h3 className="font-bold mb-2">Detailed Views</h3>
+            <div className="grid grid-cols-3 gap-2">
+              {/* Upper section */}
+              <Sheet>
+                <SheetTrigger asChild>
+                  <button className="aspect-square overflow-hidden border hover:border-black transition-all">
+                    <img 
+                      src={productImages[3]} 
+                      alt="Upper section"
+                      className="w-full h-full object-cover object-top"
+                    />
+                  </button>
+                </SheetTrigger>
+                <SheetContent side="bottom" className="h-[80vh]">
+                  <div className="h-full flex items-center justify-center">
+                    <img 
+                      src={productImages[3]} 
+                      alt="Detailed view"
+                      className="max-h-full max-w-full object-contain"
+                    />
+                  </div>
+                </SheetContent>
+              </Sheet>
+
+              {/* Middle section */}
+              <Sheet>
+                <SheetTrigger asChild>
+                  <button className="aspect-square overflow-hidden border hover:border-black transition-all">
+                    <img 
+                      src={productImages[3]} 
+                      alt="Middle section"
+                      className="w-full h-full object-cover object-center"
+                    />
+                  </button>
+                </SheetTrigger>
+                <SheetContent side="bottom" className="h-[80vh]">
+                  <div className="h-full flex items-center justify-center">
+                    <img 
+                      src={productImages[3]} 
+                      alt="Detailed view"
+                      className="max-h-full max-w-full object-contain"
+                    />
+                  </div>
+                </SheetContent>
+              </Sheet>
+
+              {/* Lower section */}
+              <Sheet>
+                <SheetTrigger asChild>
+                  <button className="aspect-square overflow-hidden border hover:border-black transition-all">
+                    <img 
+                      src={productImages[3]} 
+                      alt="Lower section"
+                      className="w-full h-full object-cover object-bottom"
+                    />
+                  </button>
+                </SheetTrigger>
+                <SheetContent side="bottom" className="h-[80vh]">
+                  <div className="h-full flex items-center justify-center">
+                    <img 
+                      src={productImages[3]} 
+                      alt="Detailed view"
+                      className="max-h-full max-w-full object-contain"
+                    />
+                  </div>
+                </SheetContent>
+              </Sheet>
+            </div>
           </div>
         </div>
         
